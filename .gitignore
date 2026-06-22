@@ -1,0 +1,17 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+node_modules/
+
+# Working copy / docs not part of the live site (uncomment if you don't want it tracked)
+# thynks_com_reboot_copy_master.md

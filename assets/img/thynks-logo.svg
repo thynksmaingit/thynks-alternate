@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 150" role="img" aria-label="Thynks">
+  <g fill="currentColor">
+    <path d="M2 18 H100 V41 H64 V132 H38 V41 H2 Z"/>
+    <path d="M114 18 H140 V63 H182 V18 H208 V132 H182 V87 H140 V132 H114 Z"/>
+    <path d="M300 18 H326 L368 84 V18 H392 V132 H366 L324 66 V132 H300 Z"/>
+    <path d="M406 18 H432 V64 L470 18 H500 L456 70 L502 132 H472 L438 86 L432 93 V132 H406 Z"/>
+    <path d="M510 94 h26 c1 11 8 17 19 17 c10 0 17 -5 17 -13 c0 -9 -10 -12 -23 -16 c-18 -5 -37 -11 -37 -34 c0 -22 18 -35 42 -35 c25 0 42 14 43 36 h-26 c-1 -9 -8 -14 -18 -14 c-9 0 -15 4 -15 11 c0 8 9 11 22 15 c18 5 38 11 38 35 c0 23 -19 36 -45 36 c-27 0 -46 -15 -47 -39 Z"/>
+  </g>
+  <g transform="translate(222,8)">
+    <path d="M33 4 a30 30 0 0 1 18 54 c-4 3 -6 7 -6 12 v3 h-24 v-3 c0 -5 -2 -9 -6 -12 a30 30 0 0 1 18 -54 Z" fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+    <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+      <line x1="21" y1="84" x2="45" y2="84"/>
+      <line x1="22" y1="96" x2="44" y2="96"/>
+      <line x1="24" y1="108" x2="42" y2="108"/>
+      <line x1="27" y1="120" x2="39" y2="120"/>
+    </g>
+    <path d="M39 18 L21 56 H32 L28 86 L49 44 H37 Z" fill="#E0B53A"/>
+  </g>
+</svg>

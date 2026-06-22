@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thynks — Digital Marketing, Design & AI Systems That Drive Growth</title>
+  <meta name="description" content="Thynks helps ambitious brands turn marketing, design, data, and AI automation into one clear growth system. Strategy-led. Beautifully built. Measured relentlessly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/thynks.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="bulb">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="glow" cx="24" cy="19" r="11"/>
+        <path class="glass" stroke-width="2" d="M24 6a13 13 0 0 0-7 24c1.4 1 2 2.4 2 4h10c0-1.6.6-3 2-4a13 13 0 0 0-7-24Z"/>
+        <path class="glass" stroke-width="2" d="M19 38h10M21 42h6"/>
+      </svg>
+    </div>
+    <div class="word">thy<em>n</em>ks</div>
+  </div>
+
+  <div class="noise"></div>
+  <div class="progress"></div>
+  <div class="cursor-glow"></div>
+  <div class="cursor-dot"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a class="nav-logo" href="index.html" aria-label="Thynks home"><img class="logo-img for-dark" src="assets/img/logo/logo-dark.png" alt="Thynks"><img class="logo-img for-light" src="assets/img/logo/logo-light.png" alt="Thynks"></a>
+    <div class="nav-controls">
+      <button class="theme-toggle" aria-label="Toggle light or dark theme" title="Toggle theme">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span>
+        <span class="knob"></span>
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span>
+      </button>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Full-screen menu -->
+  <div class="mobile-menu" aria-label="Main menu">
+    <div class="menu-inner">
+      <nav class="menu-primary" aria-label="Primary">
+        <a class="menu-link" href="index.html">Home <span class="num">00</span></a>
+        <div class="menu-group">
+          <a class="menu-link js-expand" href="services/index.html" role="button" aria-expanded="false">Services
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="num">01</span>
+          </a>
+          <div class="submenu">
+            <a href="services/index.html">Services Overview</a>
+            <a href="services/marketing.html">Marketing</a>
+            <a href="services/ai-automation.html">AI Automation</a>
+            <a href="capabilities/identity.html">Design &amp; Branding</a>
+            <a href="services/ppc.html">PPC &amp; Paid Media</a>
+            <a href="services/social-media.html">Social Media</a>
+            <a href="services/email-automation.html">Email &amp; Automation</a>
+            <a href="services/reputation-management.html">Reputation</a>
+          </div>
+        </div>
+        <a class="menu-link" href="industries/index.html">Industries <span class="num">02</span></a>
+        <a class="menu-link" href="#work">Work <span class="num">03</span></a>
+        <a class="menu-link" href="#connect">Book a Sessio<span class="y">n</span> <span class="num">04</span></a>
+      </nav>
+      <aside class="menu-aside">
+        <div>
+          <div class="m-label">Start a project</div>
+          <a class="m-big" href="mailto:hello@thynks.com">hello@thynks.com</a><br>
+          <a class="m-big" href="tel:5612064826">561.206.4826</a>
+        </div>
+        <div>
+          <div class="m-label">Studio</div>
+          <span style="color:var(--grey-light); font-size:0.92rem;">2200 N Commerce Pkwy #200<br>Weston, FL 33326</span>
+        </div>
+        <div>
+          <div class="m-label">Follow the current</div>
+          <div class="menu-social">
+            <a href="https://www.facebook.com/thynksmarketing" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/thynks/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/company/thynks" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.behance.net/thynks" target="_blank" rel="noopener">Behance</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" data-section-theme="dark">
+    <canvas id="circuit" aria-hidden="true"></canvas>
+    <div class="container">
+      <span class="label">Thynks · Digital Growth, Sharpened</span>
+      <h1 class="display-xl" data-split>
+        Marketing, Design &amp; AI —<br>
+        switched on as one<br>
+        <span class="hollow">growth</span> system.
+      </h1>
+      <p class="hero-tag">
+        <em>Strategy with voltage</em> <span class="arrow">→</span>
+        <em>Creative with purpose</em> <span class="arrow">→</span>
+        <em>Systems built to compound</em>
+      </p>
+      <p class="lead" style="margin-top:2rem; max-width:60ch; color:var(--grey-light);" data-reveal>Most businesses don't have a marketing problem. They have a clarity problem. Thynks plugs ads, site, content, CRM, automation, and reporting into one intelligent growth engine — built to attract better customers, convert with confidence, and reveal what to do next.</p>
+      <div style="margin-top:3rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a class="btn solid" href="#connect">
+          <svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+          Book a Strategy Session
+        </a>
+        <a class="btn" href="#services">See How We Thynk</a>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <span>Weston, FL — Working Everywhere</span>
+      <span class="scroll-cue"><span class="pulse"></span> Scroll</span>
+    </div>
+  </section>
+
+  <!-- Gold marquee -->
+  <div class="marquee gold-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Strategy</span><span class="spark">✦</span>
+      <span>Identity</span><span class="spark">✦</span>
+      <span>Web Design</span><span class="spark">✦</span>
+      <span>Development</span><span class="spark">✦</span>
+      <span>Advertising</span><span class="spark">✦</span>
+      <span>Content</span><span class="spark">✦</span>
+      <span>Social</span><span class="spark">✦</span>
+      <span>Automation</span><span class="spark">✦</span>
+      <span>AI Search</span><span class="spark">✦</span>
+    </div>
+  </div>
+
+  <!-- Manifesto: the lights come on -->
+  <section class="section" data-section-theme="light" id="story">
+    <div class="container">
+      <span class="label">The Wattage Leak</span>
+      <h2 class="display-lg" data-split>
+        Your growth isn't broken.<br>
+        It's <span class="gold">scattered.</span>
+      </h2>
+      <div class="grid-2" style="margin-top:3rem;">
+        <p class="lead" data-reveal>
+          You have campaigns running, content being posted, leads coming in, reports being pulled,
+          and maybe a few AI tools floating around the team. But nothing is truly connected.
+          So the work gets <strong>louder, not smarter.</strong>
+        </p>
+        <p class="lead" data-reveal data-reveal-delay="0.15">
+          That's where waste hides: duplicated effort, unclear messaging, generic creative, slow
+          follow-up, weak attribution, and agencies that only own their tiny slice. <strong>Thynks
+          brings the current back into one circuit</strong> — strategy, creative, performance, and
+          automation wired to compound instead of splinter.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section" data-section-theme="light" style="padding-top:0;">
+    <div class="container">
+      <div class="stats" data-reveal-group>
+        <div class="stat">
+          <div class="num"><span data-count="20">0</span><sup>+</sup></div>
+          <div class="desc">Years switched on</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="6">0</span></div>
+          <div class="desc">Capabilities, one current</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="100">0</span><sup>%</sup></div>
+          <div class="desc">In-house &amp; accountable</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="24">0</span><sup>/7</sup></div>
+          <div class="desc">Always-on automation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video band: the current in motion -->
+  <section class="video-band" data-section-theme="dark" aria-label="Thynks in motion">
+    <video class="vb-media" src="assets/video/story-background.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <span class="vb-veil"></span>
+    <div class="container vb-inner">
+      <span class="label" style="color:var(--gold);">How We Thynk</span>
+      <h2 class="display-lg" data-split>Four disciplines.<br><span class="gold">One bright direction.</span></h2>
+      <p class="lead" style="max-width:58ch; color:var(--grey-light);" data-reveal>Strategy diagnoses the real constraint. Creative makes it memorable. Performance makes every channel earn its job. Automation removes the manual drag. One current, never stops running.</p>
+    </div>
+  </section>
+
+  <!-- Capabilities — sticky expertise -->
+  <section class="home-expertise section" data-section-theme="light" id="services">
+    <div class="container" style="margin-bottom:clamp(2rem,6vh,5rem);">
+      <span class="label">What We Build</span>
+      <h2 class="display-lg" data-split>
+        A modern agency stack —<br>
+        without the stale agency <span class="hollow">drag.</span>
+      </h2>
+      <p class="lead" style="margin:2rem 0 0; max-width:58ch;" data-reveal>
+        Six disciplines, wired into one system. Built around measurable acquisition, not
+        activity reports. Start anywhere — every capability ladders into the full circuit.
+      </p>
+    </div>
+    <div class="container">
+      <div class="home-expertise__content">
+
+        <!-- Sticky bulb / circuit visual -->
+        <div class="home-expertise__sticky">
+          <div class="xp-stage" data-xp-stage>
+            <span class="xp-stage__ring"></span>
+            <span class="xp-stage__ring is--2"></span>
+            <span class="xp-stage__ring is--3"></span>
+            <span class="xp-grid-bg"></span>
+            <span class="xp-stage__idx" data-xp-idx>01</span>
+            <span class="xp-spark a"></span>
+            <span class="xp-spark b"></span>
+            <span class="xp-bulb">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle class="glow" cx="24" cy="19" r="11"/>
+                <path class="glass" stroke-width="2" d="M24 6a13 13 0 0 0-7 24c1.4 1 2 2.4 2 4h10c0-1.6.6-3 2-4a13 13 0 0 0-7-24Z"/>
+                <path class="glass" stroke-width="2" d="M19 38h10M21 42h6"/>
+              </svg>
+            </span>
+            <span class="xp-stage__kw" data-xp-kw>.identity</span>
+          </div>
+        </div>
+
+        <!-- Full-height tiles -->
+        <div class="home-expertise__tiles">
+
+          <article class="xp-tile" data-xp-tile data-idx="01" data-kw=".identity">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">01</span></div>
+            <h3><span class="dot">.</span>identity</h3>
+            <p class="xp-tile__subtitle"><em>Become unmistakable in a market full of sameness</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">A brand isn't a logo. It's the gut-feeling people get the instant they meet you — and either you author it, or the market does it for you.</p>
+              <p>We build purposeful, passionate brands that tell the world what you do, how well you do it, and why you do it better than anyone else in the room.</p>
+              <p>Strategy, naming, visual systems, and a voice with a pulse. Every asset wired to one idea, so you read as inevitable instead of optional.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Instant recognition</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Premium pricing power</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>A story people repeat</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Internal alignment</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/identity.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+          <article class="xp-tile" data-xp-tile data-idx="02" data-kw=".interactive">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">02</span></div>
+            <h3><span class="dot">.</span>interactive</h3>
+            <p class="xp-tile__subtitle"><em>A site that earns trust in the first three seconds</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">Your website is the hardest-working salesperson you'll ever hire. It never sleeps, never calls in sick — so it had better be flawless.</p>
+              <p>We design and build beautiful, memorable websites on clean, modern code — engineered to relay trust, tell your story, and convert on every device.</p>
+              <p>Tested, retested, and obsessed over until the experience feels effortless. Fast where it counts, considered where it matters.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Higher conversion rates</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Lower bounce, longer visits</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Mobile that actually works</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>A platform you can grow on</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/interactive.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+          <article class="xp-tile" data-xp-tile data-idx="03" data-kw=".advertising">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">03</span></div>
+            <h3><span class="dot">.</span>advertising</h3>
+            <p class="xp-tile__subtitle"><em>Spend that's accountable to a number, not a hunch</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">Most ad budgets leak. Ours are engineered — every dollar traced from impression to outcome, then sharpened again.</p>
+              <p>Performance media built on real market research and competitive analysis. Paid search, paid social, programmatic — managed, optimized, and answerable to ROI.</p>
+              <p>We test relentlessly, kill what doesn't work fast, and pour fuel on what does. No vanity metrics, no mystery invoices.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Lower cost per acquisition</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Predictable pipeline</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Transparent reporting</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Budget that scales with proof</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/advertising.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+          <article class="xp-tile" data-xp-tile data-idx="04" data-kw=".content">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">04</span></div>
+            <h3><span class="dot">.</span>content</h3>
+            <p class="xp-tile__subtitle"><em>Words and stories that move people to act</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">People don't share features. They share feelings, ideas, and stories worth retelling. That's the currency we trade in.</p>
+              <p>A proprietary blend of storytelling, PR, and social that carries your message to the people who actually matter — and makes them care.</p>
+              <p>Copy that's assertive, confident, and lean. Sharp enough to cut through the feed, human enough that no one suspects a robot wrote it.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>An engaged audience</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Authority in your niche</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Content that compounds</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>A voice people recognize</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/content.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+          <article class="xp-tile" data-xp-tile data-idx="05" data-kw=".automation">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">05</span></div>
+            <h3><span class="dot">.</span>automation</h3>
+            <p class="xp-tile__subtitle"><em>Marketing that keeps working while you sleep</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">The best employee you never hired never takes a day off, never forgets a follow-up, and never lets a lead go cold.</p>
+              <p>Drip campaigns, CRM intelligence, and AI-powered workflows that nurture every prospect on autopilot — centralized, efficient, relentlessly on.</p>
+              <p>We wire your marketing into a system that runs on its own current, so your team spends its energy closing instead of chasing.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Zero leads slipping through</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Hours back every week</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Faster lead-to-close</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Consistency at scale</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/automation.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+          <article class="xp-tile" data-xp-tile data-idx="06" data-kw=".search">
+            <div class="xp-tile__eyebrow"><span class="xp-tile__num">06</span></div>
+            <h3><span class="dot">.</span>search</h3>
+            <p class="xp-tile__subtitle"><em>Get found where the questions are now being asked</em></p>
+            <div class="xp-tile__body">
+              <p class="is--lead">Your next customer may never type your name into Google. They'll ask an AI who to hire — and take the first answer it gives.</p>
+              <p>SEO for the AI era. When buyers ask ChatGPT, Google AI, or Perplexity for a recommendation, we make sure the answer is you.</p>
+              <p>Visibility built for how discovery actually happens now — structured, cited, and impossible for the answer engines to skip.</p>
+            </div>
+            <div class="xp-result">
+              <h4>The result?</h4>
+              <div class="xp-result__list">
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Cited by AI answers</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>First-mover visibility</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Durable organic traffic</p></div>
+                <div class="xp-result__item"><span class="xp-result__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><p>Future-proof discovery</p></div>
+              </div>
+            </div>
+            <div class="xp-tile__btn"><a class="btn solid" href="capabilities/ai-search.html">Discover more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Difference -->
+  <section class="section" data-section-theme="light" id="difference" style="padding-top:0;">
+    <div class="container">
+      <span class="label">The Anti-Stale Agency</span>
+      <h2 class="display-lg" data-split>
+        Persuaders. Tech geeks.<br>
+        Storytellers. <span class="gold">Same table.</span>
+      </h2>
+      <div class="grid-2" style="margin-top:3rem;">
+        <p class="lead" data-reveal>
+          Traditional agencies hand off work like a relay race. Strategy disappears into creative.
+          Creative gets flattened by media. Media blames the landing page. The landing page blames
+          the CRM. Everybody owns a slice; nobody owns the outcome.
+        </p>
+        <p class="lead" data-reveal data-reveal-delay="0.15">
+          Thynks works differently. We sit strategy, copy, design, media, automation, and
+          measurement <strong>inside the same room.</strong> That's how better ideas survive contact
+          with the real world — and how the work compounds instead of competing for credit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work: horizontal showcase -->
+  <section class="work-wrap section" data-section-theme="dark" id="work" style="padding-bottom:0;">
+    <div class="container" style="margin-bottom:3rem;">
+      <span class="label">Selected Work</span>
+      <h2 class="display-lg" data-split>
+        Where culture pops &amp;<br>
+        brands <span class="gold">ignite.</span>
+      </h2>
+    </div>
+    <div class="work-track">
+      <a class="work-panel" href="work/go-solar.html">
+        <div class="frame">
+          <img src="assets/img/clients/go-solar/go-solar-desktop.webp" alt="Go Solar program website and brand" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>Go Solar</h3>
+          <span class="tags">Energy · Brand · Web</span>
+        </div>
+        <p class="quote">A clean-energy program, wired end to end — brand, web, and print that knocks on the right doors.</p>
+      </a>
+      <a class="work-panel" href="work/il-forno.html">
+        <div class="frame">
+          <img src="assets/img/clients/il-forno/il-forno-website-doral-southwest-florida-thynks-ag.webp" alt="Il Forno restaurant website and marketing" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>Il Forno</h3>
+          <span class="tags">Restaurant · Web · Social</span>
+        </div>
+        <p class="quote">Wood-fired storytelling that fills tables in two languages.</p>
+      </a>
+      <a class="work-panel" href="work/kinon.html">
+        <div class="frame">
+          <img src="assets/img/clients/kinon/kinon1-8.webp" alt="Kinon luxury surface design website" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>Kinon</h3>
+          <span class="tags">Luxury · Brand · Web</span>
+        </div>
+        <p class="quote">Gallery-grade surfaces deserved a gallery-grade web experience. Quiet, confident, unmissable.</p>
+      </a>
+      <a class="work-panel" href="work/roos.html">
+        <div class="frame">
+          <img src="assets/img/clients/roos/roos-1.webp" alt="Roos International architecture brand and email" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>Roos International</h3>
+          <span class="tags">Architecture · Brand · Email</span>
+        </div>
+        <p class="quote">Two decades of pedigree, brought current — with email programs that re-engaged a loyal audience.</p>
+      </a>
+      <a class="work-panel" href="work/5i-solutions.html">
+        <div class="frame">
+          <img src="assets/img/clients/5i-solutions/5isolutions-responsive-design.webp" alt="5i Solutions responsive website and infographics" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>5i Solutions</h3>
+          <span class="tags">Tech · Web · Content</span>
+        </div>
+        <p class="quote">Enterprise content management, made to feel handled — responsive site, infographics, and clarity.</p>
+      </a>
+      <a class="work-panel" href="work/carole-flamant.html">
+        <div class="frame">
+          <img src="assets/img/clients/carole-flamant/caroleflamantwebsite1.webp" alt="Carole Flamant beauty brand website" loading="lazy">
+          <span class="veil"></span>
+        </div>
+        <div class="meta">
+          <h3>Carole Flamant</h3>
+          <span class="tags">Beauty · Brand · Web</span>
+        </div>
+        <p class="quote">A master esthetician's craft, given a presence as polished as her work.</p>
+      </a>
+    </div>
+    <div class="container" style="padding:3rem 0 var(--section-pad);">
+      <span class="dim" style="font-family:var(--font-mono); font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase;">Keep scrolling — the reel drives itself</span>
+    </div>
+  </section>
+
+  <!-- Full portfolio grid -->
+  <section class="section" data-section-theme="light" id="portfolio">
+    <div class="container">
+      <span class="label">The Full Reel</span>
+      <h2 class="display-lg" data-split>
+        More wattage in<br>
+        the <span class="gold">archive.</span>
+      </h2>
+      <div class="work-grid" style="margin-top:3.5rem;" data-reveal-group>
+        <a class="work-cell" href="work/go-solar.html">
+          <div class="frame"><img src="assets/img/clients/go-solar/go-solar-program-website-design-thynks.webp" alt="Go Solar program website design" loading="lazy"></div>
+          <div class="meta"><h3>Go Solar</h3><span class="tags">Energy · Web · Print</span></div>
+        </a>
+        <a class="work-cell" href="work/roos.html">
+          <div class="frame"><img src="assets/img/clients/roos/roos-architectural-design-1-resize.webp" alt="Roos International architectural design" loading="lazy"></div>
+          <div class="meta"><h3>Roos International</h3><span class="tags">Architecture · Brand</span></div>
+        </a>
+        <a class="work-cell" href="work/5i-solutions.html">
+          <div class="frame"><img src="assets/img/clients/5i-solutions/5i-solutions-ecm-mockup.webp" alt="5i Solutions ECM platform" loading="lazy"></div>
+          <div class="meta"><h3>5i Solutions</h3><span class="tags">Tech · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/kinon.html">
+          <div class="frame"><img src="assets/img/clients/kinon/kinon33-resize.webp" alt="Kinon luxury surface brand" loading="lazy"></div>
+          <div class="meta"><h3>Kinon</h3><span class="tags">Luxury · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/il-forno.html">
+          <div class="frame"><img src="assets/img/clients/il-forno/ilforno-2.webp" alt="Il Forno restaurant brand" loading="lazy"></div>
+          <div class="meta"><h3>Il Forno</h3><span class="tags">Restaurant · Social</span></div>
+        </a>
+        <a class="work-cell" href="work/carole-flamant.html">
+          <div class="frame"><img src="assets/img/clients/carole-flamant/caroleflamantservices.webp" alt="Carole Flamant services page" loading="lazy"></div>
+          <div class="meta"><h3>Carole Flamant</h3><span class="tags">Beauty · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/5i-solutions.html">
+          <div class="frame"><img src="assets/img/general/sfj-mockup-south-florida-mockup-desktop-website-po.webp" alt="South Florida website portfolio mockup" loading="lazy"></div>
+          <div class="meta"><h3>SFJ Mockup</h3><span class="tags">Healthcare · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/go-solar.html">
+          <div class="frame"><img src="assets/img/general/ind-consulting-services-thynks-website-design.webp" alt="IND Consulting website design" loading="lazy"></div>
+          <div class="meta"><h3>IND Consulting</h3><span class="tags">B2B · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/roos.html">
+          <div class="frame"><img src="assets/img/general/edifikarch-display.webp" alt="Edifikarch architecture brand display" loading="lazy"></div>
+          <div class="meta"><h3>Edifikarch</h3><span class="tags">Architecture · Brand</span></div>
+        </a>
+        <a class="work-cell" href="work/carole-flamant.html">
+          <div class="frame"><img src="assets/img/general/familiar-mockup.webp" alt="Familiar magazine brand mockup" loading="lazy"></div>
+          <div class="meta"><h3>Familiar</h3><span class="tags">Editorial · Brand</span></div>
+        </a>
+        <a class="work-cell" href="work/il-forno.html">
+          <div class="frame"><img src="assets/img/general/georgiaatlas.webp" alt="Georgia Atlas brand and web" loading="lazy"></div>
+          <div class="meta"><h3>Georgia Atlas</h3><span class="tags">Travel · Web</span></div>
+        </a>
+        <a class="work-cell" href="work/kinon.html">
+          <div class="frame"><img src="assets/img/general/weston-marketing-website-design.webp" alt="Weston marketing website design" loading="lazy"></div>
+          <div class="meta"><h3>Weston Studio</h3><span class="tags">Marketing · Web</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="section" data-section-theme="light" id="outcomes" style="padding-top:0;">
+    <div class="container">
+      <span class="label">What Gets Brighter</span>
+      <h2 class="display-lg" data-split>
+        The work should<br>
+        change the <span class="gold">business.</span>
+      </h2>
+      <ul class="checklist" style="margin-top:3rem;" data-reveal-group>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Lower cost per qualified lead</strong> — spend traced to outcomes, not clicks</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Higher landing page conversion</strong> — cleaner paths, less friction</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Faster lead response &amp; intake</strong> — caught before it cools</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Stronger brand recall</strong> — visual consistency that sticks</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Reporting that's actually useful</strong> — fewer manual updates</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Better organic visibility</strong> — across search and AI answer engines</span></li>
+        <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>More revenue from owned channels</strong> — email and SMS that earn their keep</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Process: the spark sequence -->
+  <section class="section" data-section-theme="light" id="process" style="padding-top:0;">
+    <div class="container">
+      <span class="label">The Spark Sequence</span>
+      <h2 class="display-md" data-reveal style="margin-bottom:2.6rem;">From guesswork to growth map</h2>
+      <div class="process">
+        <div class="process-step" data-reveal>
+          <span class="n">01</span>
+          <h3>Illuminate</h3>
+          <p>We audit your market, message, funnel, data, creative, tech stack, and customer path. The goal isn't a giant report. The goal is clarity.</p>
+        </div>
+        <div class="process-step" data-reveal>
+          <span class="n">02</span>
+          <h3>Prioritize</h3>
+          <p>We identify the highest-leverage moves and define the first 30, 60, and 90 days. You see what we'll do, why it matters, and how it's measured.</p>
+        </div>
+        <div class="process-step" data-reveal>
+          <span class="n">03</span>
+          <h3>Build</h3>
+          <p>We create the campaigns, pages, workflows, content, creative, and tracking needed to launch with confidence.</p>
+        </div>
+        <div class="process-step" data-reveal>
+          <span class="n">04</span>
+          <h3>Optimize</h3>
+          <p>We test, learn, refine, and scale. The system gets smarter because the team keeps thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="section" data-section-theme="light">
+    <div class="container" style="text-align:center;">
+      <span class="label" style="justify-content:center;">Trusted By</span>
+      <h2 class="display-md" data-reveal style="margin-bottom:3.5rem;">
+        From scrappy start-ups to nationally recognized brands
+      </h2>
+      <div class="clients" data-reveal-group>
+        <span class="client">Audi</span>
+        <span class="client">MetroPCS</span>
+        <span class="client">City of Hollywood</span>
+        <span class="client">Roos International</span>
+        <span class="client">Kinon</span>
+        <span class="client">5i Solutions</span>
+        <span class="client">Go Solar</span>
+        <span class="client">Il Forno</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" data-section-theme="light" id="faq" style="padding-top:0;">
+    <div class="container">
+      <span class="label">Questions, Answered</span>
+      <h2 class="display-md" data-reveal style="margin-bottom:2.6rem;">Before you book the session</h2>
+      <div class="faq" data-reveal-group>
+        <details>
+          <summary><span class="q-mark">+</span>What makes Thynks different from a regular agency?</summary>
+          <p>We don't sell isolated tactics. We connect strategy, creative, performance, and automation so the work compounds instead of splintering.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">+</span>Can Thynks work with our existing website, CRM, or ad accounts?</summary>
+          <p>Yes. We can audit, restructure, improve, or rebuild depending on what gives you the fastest intelligent path forward.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">+</span>Do we need AI automation right away?</summary>
+          <p>Not always. We only recommend automation where it removes real friction or creates measurable leverage. No demo hype. No shiny-object theater.</p>
+        </details>
+        <details>
+          <summary><span class="q-mark">+</span>How do we start?</summary>
+          <p>Book a strategy session. We'll map the current state, identify the bottlenecks, and define the brightest first move.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big CTA -->
+  <section class="section cta-wire" data-section-theme="dark" id="connect">
+    <div class="container">
+      <span class="label" style="justify-content:center;">Let's find the brightest move</span>
+      <a href="mailto:hello@thynks.com" data-reveal>
+        <span class="mega">Book a Strategy Sessio<span class="y">n</span>.</span>
+      </a>
+      <p class="lead" style="max-width:60ch; margin:2rem auto 0; text-align:center; color:var(--grey-light);" data-reveal>Bring us your goals, your bottlenecks, and the parts of your marketing that feel dim. We'll map the opportunities, show you what's worth fixing first, and build the system to make it happen.</p>
+      <div style="margin-top:3rem; display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;" data-reveal>
+        <a class="btn solid" href="mailto:hello@thynks.com">hello@thynks.com</a>
+        <a class="btn" href="tel:5612064826">561.206.4826</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" data-section-theme="dark">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="nav-logo" href="index.html" style="margin-bottom:1rem;"><img class="logo-img for-dark" src="assets/img/logo/logo-dark.png" alt="Thynks"><img class="logo-img for-light" src="assets/img/logo/logo-light.png" alt="Thynks"></a>
+          <p class="blurb">A digital marketing &amp; design agency in Weston, Florida. Illuminate. Automate. Accelerate.</p>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <a href="services/index.html">Overview</a><br>
+          <a href="services/marketing.html">Marketing</a><br>
+          <a href="services/ai-automation.html">AI Automation</a><br>
+          <a href="services/ppc.html">PPC &amp; Paid Media</a><br>
+          <a href="services/social-media.html">Social Media</a><br>
+          <a href="services/email-automation.html">Email &amp; Automation</a><br>
+          <a href="services/reputation-management.html">Reputation</a>
+        </div>
+        <div>
+          <h5>Industries</h5>
+          <a href="industries/index.html">Overview</a><br>
+          <a href="industries/healthcare.html">Healthcare</a><br>
+          <a href="industries/restaurants.html">Restaurants</a><br>
+          <a href="industries/home-services.html">Home Services</a><br>
+          <a href="industries/ecommerce.html">eCommerce</a>
+        </div>
+        <div>
+          <h5>Studio</h5>
+          <a href="#work">Work</a><br>
+          <a href="#difference">About</a><br>
+          <a href="#connect">Contact</a>
+        </div>
+      </div>
+      <div class="footer-base">
+        <span>&copy; <span class="year"></span> Thynks Digital Marketing Agency</span>
+        <span>2200 N Commerce Pkwy #200, Weston, FL 33326</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="assets/js/thynks.js"></script>
+</body>
+</html>
