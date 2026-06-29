@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/thynks.css">
+  <link rel="stylesheet" href="../assets/css/ai-automation-motion.css">
 </head>
 <body data-theme="dark">
 
@@ -78,19 +79,45 @@
     </div>
   </div>
 
-  <section class="page-hero" data-section-theme="dark">
-    <span class="watermark">AI</span>
-    <div class="container">
-      <span class="label">AI Automation</span>
-      <h1 class="display-xl" data-split>
-        AI that moves the work,<br>
-        <span class="gold">not just the conversation.</span>
-      </h1>
-      <p class="lead" style="margin-top:2.2rem; max-width:64ch;" data-reveal>AI is only useful when it changes the business. Thynks identifies the repetitive decisions, slow handoffs, manual follow-ups, and messy knowledge flows that drain your team &mdash; then designs automation that works inside the tools you already use.</p>
-      <div style="margin-top:2.6rem; display:flex; gap:1rem; flex-wrap:wrap;">
-        <a class="btn solid" href="../index.html#connect"><svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Find My Automation Opportunities</a>
-        <a class="btn" href="#capabilities">See AI Use Cases</a>
+  <section class="aiax-hero" data-section-theme="dark" id="aiax-hero">
+    <div class="aiax-hero__stage">
+      <div class="aiax-hero__panels">
+
+        <!-- Left image stack — slides in from off-canvas on scroll -->
+        <div class="aiax-hero__side aiax-hero__side--left" aria-hidden="true">
+          <div class="aiax-hero__tile"><img src="../assets/img/brand/thynks-automation-services.webp" alt=""></div>
+          <div class="aiax-hero__tile"><img src="../assets/img/brand/market-automation-software-platform-management.webp" alt=""></div>
+        </div>
+
+        <!-- Center — live circuit canvas backdrop -->
+        <div class="aiax-hero__center">
+          <div class="aiax-hero__centerbg"></div>
+          <canvas id="circuit" aria-hidden="true"></canvas>
+        </div>
+
+        <!-- Right image stack — slides in from off-canvas on scroll -->
+        <div class="aiax-hero__side aiax-hero__side--right" aria-hidden="true">
+          <div class="aiax-hero__tile"><img src="../assets/img/brand/thynks-automation-colored1.webp" alt=""></div>
+          <div class="aiax-hero__tile"><img src="../assets/img/brand/bigstock-silver-metallic-robot-handyman-260962561.webp" alt=""></div>
+        </div>
+
       </div>
+
+      <!-- Copy overlays the whole stage so it never reflows during the scroll -->
+      <div class="aiax-hero__copy">
+        <span class="label">AI Automation</span>
+        <h1 class="aiax-hero__title" data-aiax-title>
+          AI that moves the work,<br>
+          <span class="gold">not just the conversation.</span>
+        </h1>
+        <p class="aiax-hero__lead">AI is only useful when it changes the business. Thynks identifies the repetitive decisions, slow handoffs, manual follow-ups, and messy knowledge flows that drain your team &mdash; then designs automation that works inside the tools you already use.</p>
+        <div class="aiax-hero__cta">
+          <a class="btn solid" href="../index.html#connect"><svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Find My Automation Opportunities</a>
+          <a class="btn" href="#capabilities">See AI Use Cases</a>
+        </div>
+      </div>
+
+      <div class="aiax-hero__scrollcue"><span class="bar"></span>Scroll to build the circuit</div>
     </div>
   </section>
 
@@ -107,33 +134,33 @@
     <div class="container">
       <span class="label">AI Capabilities</span>
       <h2 class="display-lg" data-split style="margin-bottom:3rem;">Automation with judgment.</h2>
-      <div class="grid-3" data-reveal-group>
-        <article class="current-card">
+      <div class="grid-3 aiax-cards">
+        <article class="current-card aiax-card-glow" data-aiax-card="left">
           <span class="kicker">Workflow Automation</span>
           <h3>Remove repetitive tasks</h3>
           <p>Across intake, sales, operations, reporting, support, and fulfillment.</p>
         </article>
-        <article class="current-card">
+        <article class="current-card aiax-card-glow" data-aiax-card="up">
           <span class="kicker">Custom AI Agents</span>
           <h3>Support your team with guardrails</h3>
           <p>Agents that retrieve information, qualify leads, summarize context, create drafts, and route requests.</p>
         </article>
-        <article class="current-card">
+        <article class="current-card aiax-card-glow" data-aiax-card="right">
           <span class="kicker">CRM &amp;amp; Sales Automation</span>
           <h3>Keep opportunities warm</h3>
           <p>Speed-to-lead workflows, lead scoring, lifecycle triggers, sales notes, reminders, and handoff systems.</p>
         </article>
-        <article class="current-card">
+        <article class="current-card aiax-card-glow" data-aiax-card="left">
           <span class="kicker">Knowledge Systems</span>
           <h3>Grounded in your documents</h3>
           <p>Internal knowledge bases, searchable SOPs, customer service assistants, and training copilots.</p>
         </article>
-        <article class="current-card">
+        <article class="current-card aiax-card-glow" data-aiax-card="up">
           <span class="kicker">Reporting Automation</span>
           <h3>Stop assembling the truth by hand</h3>
           <p>Dashboards, weekly summaries, anomaly alerts, and executive briefs.</p>
         </article>
-        <article class="current-card">
+        <article class="current-card aiax-card-glow" data-aiax-card="right">
           <span class="kicker">AI Adoption Roadmaps</span>
           <h3>Build the right thing first</h3>
           <p>Where AI is worth using, where it's risky, where humans should stay in control.</p>
@@ -195,6 +222,53 @@
         <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Healthcare intake and non-PHI admin workflows</strong></span></li>
         <li><svg class="bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><span><strong>Restaurant reservation and loyalty follow-up</strong></span></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section aiax-rail-section" data-section-theme="dark" style="padding-bottom:0;">
+    <div class="container">
+      <span class="label">In The Field</span>
+      <h2 class="display-md" data-reveal style="margin-bottom:0.6rem;">Where the current <span class="gold">runs.</span></h2>
+      <p class="lead" style="max-width:58ch;" data-reveal>Drag the rail. Every panel is a system we've wired into a real operation &mdash; the same circuitry we'll build into yours.</p>
+    </div>
+    <div class="aiax-rail-wrap" style="margin-top:2.6rem;">
+      <div class="aiax-rail" id="aiax-rail">
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/thynks-automation.webp" alt="Workflow automation systems">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">Workflow</span><h3>Repetitive work, removed</h3><p>Intake, routing, and follow-up that runs without a human babysitting it.</p></div>
+        </article>
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/market-automation-software-platform-management.webp" alt="CRM and sales automation">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">CRM &amp; Sales</span><h3>Speed-to-lead, on autopilot</h3><p>Lead scoring, lifecycle triggers, and handoffs that keep deals warm.</p></div>
+        </article>
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/bigstock-silver-metallic-robot-handyman-260962561.webp" alt="Custom AI agents">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">Agents</span><h3>Guardrailed copilots</h3><p>Retrieve, qualify, summarize, and draft &mdash; with humans in control.</p></div>
+        </article>
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/technical-analysis-search-optimization.webp" alt="Knowledge systems">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">Knowledge</span><h3>Grounded in your docs</h3><p>Searchable SOPs and assistants that answer from your truth, not guesses.</p></div>
+        </article>
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/thynks-strategy-research.webp" alt="Reporting automation">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">Reporting</span><h3>The truth, assembled</h3><p>Dashboards, weekly briefs, and anomaly alerts that build themselves.</p></div>
+        </article>
+        <article class="aiax-rail__card">
+          <img src="../assets/img/brand/thynks-automation-marketing-solutions.webp" alt="AI adoption roadmaps">
+          <div class="aiax-rail__veil"></div>
+          <div class="aiax-rail__cap"><span class="k">Roadmap</span><h3>The right thing, first</h3><p>Where AI is worth using, where it's risky, where people stay in charge.</p></div>
+        </article>
+      </div>
+      <div class="aiax-rail__progress"><span id="aiax-rail-progress"></span></div>
+      <div class="aiax-rail__hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Drag &middot; scroll &middot; swipe
+      </div>
     </div>
   </section>
 
@@ -278,5 +352,153 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="../assets/js/thynks.js"></script>
+
+  <!-- ============================================================
+       AI Automation — page-scoped motion (EVASION-inspired)
+       Self-contained. Does not modify global thynks.js.
+       Degrades gracefully: no JS / no GSAP / reduced-motion = static.
+       ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
+    var $  = function (s, c) { return (c || document).querySelector(s); };
+    var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+    var isWide = window.matchMedia('(min-width: 881px)').matches;
+
+    /* -------- 1. Split-headline characters (hero) -------- */
+    var title = $('[data-aiax-title]');
+    if (title && !title.dataset.aiaxSplit) {
+      title.dataset.aiaxSplit = '1';
+      (function splitChars(node) {
+        var kids = Array.prototype.slice.call(node.childNodes);
+        kids.forEach(function (n) {
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split('').forEach(function (ch) {
+              if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+              var s = document.createElement('span');
+              s.className = 'char';
+              s.textContent = ch;
+              frag.appendChild(s);
+            });
+            node.replaceChild(frag, n);
+          } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+            splitChars(n);
+          }
+        });
+      })(title);
+    }
+
+    if (!hasGSAP || reduceMotion) {
+      $$('.aiax-hero__side').forEach(function (el) {
+        el.style.transform = 'none'; el.style.opacity = '1'; el.style.width = '';
+      });
+      return;
+    }
+
+    /* -------- Hero char intro -------- */
+    if (title) {
+      gsap.from(title.querySelectorAll('.char'), {
+        yPercent: 115, opacity: 0, duration: 0.9, ease: 'power4.out',
+        stagger: 0.025, delay: 0.15
+      });
+    }
+
+    /* -------- 2. Pinned split-panel hero -------- */
+    var hero   = $('#aiax-hero');
+    var stage  = hero && $('.aiax-hero__stage', hero);
+    var left   = hero && $('.aiax-hero__side--left', hero);
+    var right  = hero && $('.aiax-hero__side--right', hero);
+    var center = hero && $('.aiax-hero__center', hero);
+
+    if (hero && stage && left && right && center && isWide) {
+      // sides start collapsed & off-canvas; center fills the row via flex:1
+      gsap.set([left, right], { flexBasis: '0%', width: '0%' });
+
+      var heroTl = gsap.timeline({
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: 0.6 }
+      });
+      // only the sides animate — the center (flex:1) is squeezed automatically,
+      // and the copy overlay spans the whole stage so it never reflows
+      heroTl
+        .to(left,  { xPercent: 0, opacity: 1, flexBasis: '24%', width: '24%', ease: 'power2.out' }, 0)
+        .to(right, { xPercent: 0, opacity: 1, flexBasis: '24%', width: '24%', ease: 'power2.out' }, 0);
+
+      // canvas resizes itself on window resize; nudge it after layout settles
+      ScrollTrigger.addEventListener('refresh', function () {
+        window.dispatchEvent(new Event('resize'));
+      });
+    }
+
+    /* -------- 3. Slide-in capability cards -------- */
+    var cardWrap = $('.aiax-cards');
+    if (cardWrap) {
+      cardWrap.setAttribute('data-aiax-ready', '');
+      var fromFor = function (dir) {
+        if (dir === 'left')  return { x: -90, y: 30 };
+        if (dir === 'right') return { x: 90,  y: 30 };
+        return { x: 0, y: 70 };
+      };
+      $$('.current-card', cardWrap).forEach(function (card) {
+        var f = fromFor(card.getAttribute('data-aiax-card'));
+        gsap.fromTo(card,
+          { x: f.x, y: f.y, autoAlpha: 0, rotateZ: f.x ? (f.x < 0 ? -2 : 2) : 0 },
+          { x: 0, y: 0, autoAlpha: 1, rotateZ: 0, duration: 0.95, ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 90%' } }
+        );
+      });
+    }
+
+    /* -------- 4. Horizontal drag gallery -------- */
+    var rail = $('#aiax-rail');
+    var prog = $('#aiax-rail-progress');
+    if (rail) {
+      var maxScroll = function () { return Math.max(0, rail.scrollWidth - rail.parentElement.clientWidth); };
+      var pos = 0, target = 0, dragging = false, startX = 0, startPos = 0, raf = null;
+
+      var apply = function () {
+        var m = maxScroll();
+        target = Math.min(0, Math.max(-m, target));
+        pos += (target - pos) * 0.12;
+        if (Math.abs(target - pos) < 0.4) pos = target;
+        rail.style.transform = 'translate3d(' + pos + 'px,0,0)';
+        if (prog) prog.style.width = (m > 0 ? (-pos / m) * 100 : 0) + '%';
+        if (Math.abs(target - pos) > 0.4) { raf = requestAnimationFrame(apply); }
+        else { raf = null; }
+      };
+      var kick = function () { if (!raf) raf = requestAnimationFrame(apply); };
+
+      rail.parentElement.addEventListener('wheel', function (e) {
+        var m = maxScroll();
+        if (m <= 0) return;
+        var atStart = target >= 0, atEnd = target <= -m;
+        var delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+        if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
+        e.preventDefault();
+        target -= delta;
+        kick();
+      }, { passive: false });
+
+      var down = function (x) { dragging = true; startX = x; startPos = target; rail.classList.add('is-dragging'); };
+      var move = function (x) { if (!dragging) return; target = startPos + (x - startX); kick(); };
+      var up   = function () { dragging = false; rail.classList.remove('is-dragging'); };
+
+      rail.addEventListener('mousedown', function (e) { e.preventDefault(); down(e.clientX); });
+      window.addEventListener('mousemove', function (e) { move(e.clientX); });
+      window.addEventListener('mouseup', up);
+
+      rail.addEventListener('touchstart', function (e) { down(e.touches[0].clientX); }, { passive: true });
+      rail.addEventListener('touchmove', function (e) { if (!dragging) return; move(e.touches[0].clientX); }, { passive: true });
+      rail.addEventListener('touchend', up);
+
+      window.addEventListener('resize', function () { target = Math.min(0, Math.max(-maxScroll(), target)); kick(); });
+      kick();
+    }
+
+    if (window.ScrollTrigger) { ScrollTrigger.refresh(); }
+  })();
+  </script>
 </body>
 </html>

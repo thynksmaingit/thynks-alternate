@@ -721,6 +721,52 @@ body[data-user-theme="light"] .theme-toggle .knob { transform: translate(26px, -
 .xlink h4 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: -0.015em; }
 .xlink p { color: var(--text-dim); font-size: 0.88rem; }
 
+/* ---------- Split hero (image + copy) ---------- */
+.split-hero {
+  position: relative; overflow: hidden;
+  padding: 9rem 0 4.5rem;
+}
+.split-hero .sh-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: clamp(1.5rem, 3vw, 3rem); align-items: center;
+}
+.split-hero .sh-copy { position: relative; z-index: 2; }
+/* smaller, calmer hero title so it flows with the image */
+.split-hero .display-xl {
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+}
+.split-hero .sh-visual {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+/* warm glow behind the floating dashboard, echoing the reference */
+.split-hero .sh-visual::before {
+  content: ""; position: absolute;
+  width: 82%; aspect-ratio: 1; right: 2%; top: 6%;
+  background: radial-gradient(circle, rgba(214,180,49,0.22), rgba(214,180,49,0) 66%);
+  filter: blur(8px); z-index: -1; pointer-events: none;
+}
+/* transparent PNG/webp: let it run bigger and to the edge, its own shadows intact */
+.split-hero .sh-visual img {
+  width: 116%; max-width: 116%; height: auto; display: block;
+  margin-right: -10%;
+  animation: sh-float 7s ease-in-out infinite;
+}
+@keyframes sh-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .split-hero .sh-visual img { animation: none; }
+}
+@media (max-width: 860px) {
+  .split-hero { padding: 7.5rem 0 3rem; }
+  .split-hero .sh-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .split-hero .sh-visual { order: -1; max-width: 520px; margin: 0 auto; }
+  .split-hero .sh-visual img { width: 100%; max-width: 100%; margin-right: 0; }
+}
+
 /* ---------- FAQ ---------- */
 .faq { border-top: 1px solid var(--line); max-width: 880px; }
 .faq details {

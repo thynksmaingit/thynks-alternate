@@ -162,13 +162,18 @@
 
   /* ---------- Counters ---------- */
   function animateCount(el) {
-    const target = parseFloat(el.dataset.count || '0');
+    const raw = el.dataset.count || '0';
+    const target = parseFloat(raw);
+    const decimals = (raw.split('.')[1] || '').length;
     const dur = 1600;
     const t0 = performance.now();
     (function tick(t) {
       const k = Math.min((t - t0) / dur, 1);
       const eased = 1 - Math.pow(1 - k, 3);
-      el.textContent = Math.round(target * eased).toLocaleString();
+      const val = target * eased;
+      el.textContent = decimals
+        ? val.toFixed(decimals)
+        : Math.round(val).toLocaleString();
       if (k < 1) requestAnimationFrame(tick);
     })(t0);
   }

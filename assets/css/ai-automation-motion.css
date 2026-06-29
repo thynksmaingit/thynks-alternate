@@ -1,0 +1,280 @@
+/* ============================================================
+   THYNKS — AI Automation page motion layer
+   Page-scoped. Inherits global tokens from thynks.css.
+   Nothing here touches .nav, .footer, theme system, or globals.
+   All hooks are namespaced under .aiax-*
+   ============================================================ */
+
+/* ---------- 1. Sticky split-panel hero ---------- */
+.aiax-hero {
+  position: relative;
+  /* tall scroll runway drives the pinned stage */
+  height: 220vh;
+  background: var(--bg);
+}
+.aiax-hero__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+/* the panels row sits as the flexing background; copy overlays above it */
+.aiax-hero__panels {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+/* side stacks slide in from off-canvas as you scroll */
+.aiax-hero__side {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 0%;
+  width: 0%;
+  overflow: hidden;
+  will-change: transform, width, opacity;
+}
+.aiax-hero__side--left  { transform: translateX(-100%); opacity: 0; }
+.aiax-hero__side--right { transform: translateX(100%);  opacity: 0; }
+.aiax-hero__tile {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+.aiax-hero__tile img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) brightness(0.82);
+}
+.aiax-hero__tile::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,11,13,0.25), rgba(11,11,13,0.55));
+  mix-blend-mode: multiply;
+}
+/* center column = the live circuit backdrop (images grow beside it) */
+.aiax-hero__center {
+  position: relative;
+  flex: 1 1 auto;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  will-change: flex-basis;
+}
+.aiax-hero__center canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+.aiax-hero__centerbg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(214,180,49,0.10), transparent 60%),
+    var(--ink-black);
+}
+/* copy is an overlay spanning the WHOLE stage — it never reflows
+   as the panels animate, so the headline stays rock-steady */
+.aiax-hero__copy {
+  position: absolute;
+  z-index: 4;
+  left: 0; right: 0; bottom: 0;
+  padding: 0 var(--gutter) clamp(3rem, 9vh, 7rem);
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  pointer-events: none;
+}
+.aiax-hero__copy .btn,
+.aiax-hero__copy a { pointer-events: auto; }
+/* darken behind the copy so text stays legible over imagery */
+.aiax-hero__copy::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  top: -2rem;
+  background: linear-gradient(0deg, rgba(11,11,13,0.78) 30%, transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+.aiax-hero__copy .label { color: var(--gold-bright); }
+.aiax-hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--paper);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  font-size: clamp(2.6rem, 7.4vw, 6.4rem);
+  margin: 1rem 0 0;
+}
+.aiax-hero__title .gold { color: var(--gold); }
+.aiax-hero__title .char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.aiax-hero__lead {
+  color: var(--grey-light);
+  max-width: 60ch;
+  margin: 1.6rem 0 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+}
+.aiax-hero__cta {
+  margin-top: 2.2rem;
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.aiax-hero__scrollcue {
+  position: absolute;
+  left: 50%; bottom: 1.4rem;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(246,244,238,0.5);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.aiax-hero__scrollcue .bar {
+  display: block; width: 1px; height: 26px;
+  background: linear-gradient(var(--gold-bright), transparent);
+  animation: aiaxCue 1.8s var(--ease-out) infinite;
+}
+@keyframes aiaxCue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  40% { transform: scaleY(1); transform-origin: top; }
+  60% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* On small screens the pinned panel effect is dropped for a clean static hero */
+@media (max-width: 880px) {
+  .aiax-hero { height: auto; }
+  .aiax-hero__stage { position: relative; height: auto; min-height: 78svh; }
+  .aiax-hero__side { display: none; }
+  .aiax-hero__center { min-height: 78svh; }
+  .aiax-hero__scrollcue { display: none; }
+}
+
+/* ---------- 2. Slide-in capability cards ---------- */
+.aiax-cards .current-card {
+  will-change: transform, opacity;
+}
+/* pre-animation rest state set by JS via gsap.from; this is the
+   graceful no-JS / reduced-motion fallback (fully visible) */
+.aiax-cards[data-aiax-ready] .current-card {
+  opacity: 0;
+}
+.aiax-card-glow {
+  position: relative;
+  overflow: hidden;
+}
+.aiax-card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(242,210,75,0.16), transparent);
+  transform: skewX(-18deg);
+  transition: none;
+  pointer-events: none;
+}
+.aiax-card-glow:hover::before {
+  animation: aiaxSheen 0.9s var(--ease-out) forwards;
+}
+@keyframes aiaxSheen {
+  to { left: 140%; }
+}
+
+/* ---------- 3. Horizontal drag gallery ---------- */
+.aiax-rail-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.aiax-rail {
+  display: flex;
+  gap: clamp(1rem, 2.4vw, 2.2rem);
+  width: max-content;
+  padding: 0 var(--gutter);
+  will-change: transform;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.aiax-rail.is-dragging { cursor: grabbing; }
+.aiax-rail__card {
+  position: relative;
+  flex: none;
+  width: clamp(260px, 40vw, 460px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--ink-raised);
+  border: 1px solid var(--line);
+}
+.aiax-rail__card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(0.82) brightness(0.9);
+  transition: transform 0.9s var(--ease-out), filter 0.6s;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+.aiax-rail__card:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.05) brightness(1);
+}
+.aiax-rail__veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(11,11,13,0.82));
+  pointer-events: none;
+}
+.aiax-rail__cap {
+  position: absolute;
+  left: 1.2rem; right: 1.2rem; bottom: 1.1rem;
+  z-index: 2;
+}
+.aiax-rail__cap .k {
+  font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-bright);
+  display: block; margin-bottom: 0.4rem;
+}
+.aiax-rail__cap h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  letter-spacing: -0.02em; color: var(--paper);
+  line-height: 1.05;
+}
+.aiax-rail__cap p {
+  margin-top: 0.4rem;
+  color: var(--grey-light);
+  font-size: 0.86rem; line-height: 1.4;
+  max-width: 34ch;
+}
+.aiax-rail__progress {
+  margin: 2rem var(--gutter) 0;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.aiax-rail__progress span {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+  will-change: width;
+}
+.aiax-rail__hint {
+  font-family: var(--font-mono);
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  padding: 0 var(--gutter);
+  display: flex; align-items: center; gap: 0.5rem;
+}

@@ -9,6 +9,218 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/thynks.css">
+  <style>
+    /* ===== Email & Automation — page-scoped enhancements ===== */
+
+    /* Hero layout: copy + flow visual side by side */
+    .ea-hero-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    @media (max-width: 940px) {
+      .ea-hero-grid { grid-template-columns: 1fr; }
+      .ea-flow { margin-top: 1.5rem; }
+    }
+
+    /* ===== Branching automation flow canvas ===== */
+    .ea-flow {
+      position: relative;
+      --flow-h: 500px;
+      height: var(--flow-h);
+    }
+    .ea-flow-svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1; overflow: visible;
+    }
+    .ea-flow-svg .wire {
+      fill: none; stroke: var(--gold); stroke-width: 2;
+      stroke-linecap: round; opacity: 0.6;
+      stroke-dasharray: 5 8;
+    }
+    .ea-flow-svg .wire-soft {
+      fill: none; stroke: var(--gold);
+      stroke-width: 1.4; opacity: 0.18;
+    }
+
+    /* A card placed absolutely on the canvas */
+    .ea-card {
+      position: absolute; z-index: 2;
+      width: 46%; max-width: 220px;
+      display: flex; gap: 0.7rem; align-items: center;
+      border: 1px solid var(--line); background: var(--bg-raised);
+      padding: 0.7rem 0.85rem; border-radius: 12px;
+      box-shadow: 0 10px 30px -18px rgba(0,0,0,0.6);
+      transition: border-color 0.35s, transform 0.4s var(--ease-out);
+    }
+    .ea-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .ea-card .ico {
+      flex: none; width: 30px; height: 30px; border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+      background: color-mix(in srgb, var(--gold) 10%, transparent);
+      color: var(--gold);
+    }
+    .ea-card .ico svg { width: 15px; height: 15px; }
+    .ea-card .t {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 0.82rem; letter-spacing: -0.01em; line-height: 1.15;
+    }
+    .ea-card .s {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-dim); margin-top: 0.22rem;
+    }
+
+    /* Positioned nodes on the canvas (desktop) */
+    .ea-pos { position: absolute; z-index: 2; }
+    .ea-n1 { top: 1%;  left: 0%; }
+    .ea-n2 { top: 26%; left: 34%; }
+    .ea-n3 { top: 45%; left: 0%; }
+    .ea-n4 { top: 64%; left: 32%; }
+    .ea-n5 { top: 82%; left: 4%; }
+
+    /* Wait / timing pills */
+    .ea-wait {
+      position: absolute; z-index: 2;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.32rem 0.7rem; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--bg-raised);
+      box-shadow: 0 6px 18px -12px rgba(0,0,0,0.6);
+    }
+    .ea-wait .ring {
+      width: 13px; height: 13px; border-radius: 50%;
+      border: 1.5px solid var(--gold); position: relative; flex: none;
+    }
+    .ea-wait .ring::after {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      border: 1px solid var(--gold); opacity: 0;
+    }
+    .ea-wait span {
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-dim);
+    }
+    .ea-w1 { top: 18%; left: 14%; }
+    .ea-w2 { top: 57%; left: 8%; }
+
+    /* Signals detected panel (top-right) */
+    .ea-signals {
+      position: absolute; z-index: 2; top: 4%; right: 0;
+      width: 44%; max-width: 200px;
+      border: 1px solid var(--line); background: var(--bg-raised);
+      border-radius: 12px; padding: 0.85rem 0.95rem;
+      box-shadow: 0 10px 30px -18px rgba(0,0,0,0.6);
+    }
+    .ea-signals .h {
+      font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .ea-signals .row {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.74rem; color: var(--text-dim); padding: 0.28rem 0;
+    }
+    .ea-signals .row svg { width: 14px; height: 14px; color: var(--gold); flex: none; }
+
+    /* Final converted node + glowing target */
+    .ea-final {
+      position: absolute; z-index: 3; bottom: 0; right: 4%;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .ea-final .ea-card { position: static; width: auto; max-width: 180px; }
+    .ea-target {
+      flex: none; width: 64px; height: 64px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, var(--gold-deep));
+      color: var(--ink-black);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 22%, transparent),
+                  0 0 34px -2px var(--gold);
+    }
+    .ea-target svg { width: 28px; height: 28px; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .ea-wait .ring::after { animation: eaPulse 2.4s ease-out infinite; }
+      .ea-flow-svg .wire { animation: eaDash 2.6s linear infinite; }
+      .ea-target { animation: eaTarget 3s ease-in-out infinite; }
+    }
+    @keyframes eaPulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      70% { transform: scale(1.9); opacity: 0; }
+      100% { opacity: 0; }
+    }
+    @keyframes eaDash { to { stroke-dashoffset: -26; } }
+    @keyframes eaTarget {
+      0%,100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 22%, transparent), 0 0 28px -4px var(--gold); }
+      50%     { box-shadow: 0 0 0 9px color-mix(in srgb, var(--gold) 14%, transparent), 0 0 44px 0 var(--gold); }
+    }
+
+    /* ===== Mobile: collapse to a clean single vertical stem ===== */
+    @media (max-width: 940px) {
+      .ea-flow {
+        height: auto; --flow-h: auto;
+        padding-left: 1.6rem;
+      }
+      .ea-flow-svg { display: none; }
+      .ea-flow::before {
+        content: ''; position: absolute; left: 0.55rem; top: 0.5rem; bottom: 0.5rem;
+        width: 2px; background: color-mix(in srgb, var(--gold) 45%, transparent);
+        border-radius: 2px;
+      }
+      .ea-pos, .ea-wait, .ea-signals, .ea-final {
+        position: static !important; inset: auto !important;
+        width: 100% !important; max-width: 100% !important;
+        margin: 0 0 0.7rem 0;
+      }
+      .ea-card { position: static; width: 100%; max-width: 100%; }
+      .ea-pos::before, .ea-final::before {
+        content: ''; position: absolute; left: -1.18rem; margin-top: 1.1rem;
+        width: 9px; height: 9px; border-radius: 50%;
+        background: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 20%, transparent);
+      }
+      .ea-pos, .ea-final { position: relative !important; }
+      .ea-wait { display: inline-flex; margin-left: 0; }
+      .ea-final { flex-direction: row-reverse; justify-content: flex-start; }
+      .ea-final .ea-target { width: 48px; height: 48px; }
+      .ea-final .ea-target svg { width: 22px; height: 22px; }
+      .ea-signals { order: -1; }
+    }
+
+    /* Precision follow-up band */
+    .ea-precision {
+      position: relative; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: var(--ink-black);
+      padding: clamp(2.4rem, 5vw, 3.6rem);
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: center;
+    }
+    .ea-precision h3 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.7rem, 3.4vw, 2.6rem); line-height: 1.1;
+      letter-spacing: -0.02em; color: var(--paper, #F4F1E9);
+    }
+    .ea-precision .gold { color: var(--gold); }
+    .ea-orbit { position: relative; min-height: 200px; display: grid; place-items: center; }
+    .ea-orbit svg { width: 100%; max-width: 360px; height: auto; }
+    .ea-orbit .ring { fill: none; stroke: var(--gold); opacity: 0.25; }
+    .ea-orbit .core { fill: var(--gold); }
+    .ea-orbit .spark { fill: var(--gold-bright); }
+    @media (prefers-reduced-motion: no-preference) {
+      .ea-orbit .core { animation: eaGlow 2.8s ease-in-out infinite; }
+    }
+    @keyframes eaGlow { 0%,100% { opacity: 0.85; } 50% { opacity: 1; filter: drop-shadow(0 0 8px var(--gold)); } }
+    @media (max-width: 760px) {
+      .ea-precision { grid-template-columns: 1fr; text-align: left; }
+      .ea-orbit { min-height: 150px; }
+    }
+
+    /* Capability card icons */
+    .current-card .ea-ico {
+      width: 40px; height: 40px; border-radius: 8px;
+      display: grid; place-items: center;
+      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+      color: var(--gold); margin-bottom: 0.2rem;
+    }
+    .current-card .ea-ico svg { width: 20px; height: 20px; }
+  </style>
 </head>
 <body data-theme="dark">
 
@@ -81,15 +293,90 @@
   <section class="page-hero" data-section-theme="dark">
     <span class="watermark">EMAIL</span>
     <div class="container">
-      <span class="label">Email &amp; Automation</span>
-      <h1 class="display-xl" data-split>
-        The money isn&#x27;t in the list.<br>
-        <span class="gold">It&#x27;s in the timing.</span>
-      </h1>
-      <p class="lead" style="margin-top:2.2rem; max-width:64ch;" data-reveal>Your audience already raised a hand. They subscribed, clicked, downloaded, requested, abandoned, booked, browsed, or bought. Thynks turns those signals into smart follow-up &mdash; the kind that feels useful, timely, and hard to ignore.</p>
-      <div style="margin-top:2.6rem; display:flex; gap:1rem; flex-wrap:wrap;">
-        <a class="btn solid" href="../index.html#connect"><svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Fix My Follow-Up</a>
-        <a class="btn" href="#build">See Automation Flows</a>
+      <div class="ea-hero-grid">
+        <div>
+          <span class="label">Email &amp; Automation</span>
+          <h1 class="display-xl" data-split>
+            The money isn&#x27;t in the list.<br>
+            <span class="gold">It&#x27;s in the timing.</span>
+          </h1>
+          <p class="lead" style="margin-top:2.2rem; max-width:54ch;" data-reveal>Your audience already raised a hand. They subscribed, clicked, downloaded, requested, abandoned, booked, browsed, or bought. Thynks turns those signals into smart follow-up &mdash; the kind that feels useful, timely, and hard to ignore.</p>
+          <div style="margin-top:2.6rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a class="btn solid" href="../index.html#connect"><svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Fix My Follow-Up</a>
+            <a class="btn" href="#build">See Automation Flows</a>
+          </div>
+        </div>
+
+        <!-- Branching automation flow -->
+        <div class="ea-flow" data-reveal-group aria-label="Automation flow example">
+
+          <!-- Connector wires (desktop only) -->
+          <svg class="ea-flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <!-- faint background routing -->
+            <path class="wire-soft" d="M18 7 C 44 9, 50 18, 68 12"/>
+            <!-- main animated flow: subscriber -> welcome -> pricing -> social -> converted -->
+            <path class="wire" d="M16 8 C 34 14, 28 24, 40 31"/>
+            <path class="wire" d="M40 31 C 20 40, 10 42, 6 49"/>
+            <path class="wire" d="M6 49 C 22 58, 30 62, 38 69"/>
+            <path class="wire" d="M38 69 C 18 78, 12 84, 22 90"/>
+            <path class="wire" d="M22 90 C 50 98, 74 96, 88 90"/>
+          </svg>
+
+          <!-- Signals detected panel -->
+          <div class="ea-signals">
+            <div class="h">Signals detected</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Opened email</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="2.5"/></svg>Visited pricing</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.4 5 5.6.6-4.2 3.7 1.3 5.5L12 18l-5.1 2.8 1.3-5.5L4 11.6l5.6-.6Z"/></svg>Clicked feature</div>
+          </div>
+
+          <!-- New subscriber -->
+          <div class="ea-pos ea-n1">
+            <div class="ea-card">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+              <div><div class="t">New subscriber</div><div class="s">Signup form</div></div>
+            </div>
+          </div>
+
+          <!-- Wait 1 hour -->
+          <div class="ea-wait ea-w1"><span class="ring"></span><span>Wait 1 hour</span></div>
+
+          <!-- Welcome email -->
+          <div class="ea-pos ea-n2">
+            <div class="ea-card">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><div class="t">Welcome email</div><div class="s">Thanks for joining!</div></div>
+            </div>
+          </div>
+
+          <!-- Viewed pricing -->
+          <div class="ea-pos ea-n3">
+            <div class="ea-card">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+              <div><div class="t">Viewed pricing</div><div class="s">High intent</div></div>
+            </div>
+          </div>
+
+          <!-- Social proof email -->
+          <div class="ea-pos ea-n4">
+            <div class="ea-card">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div><div class="t">Social proof email</div><div class="s">See what customers say</div></div>
+            </div>
+          </div>
+
+          <!-- Wait 24 hours -->
+          <div class="ea-wait ea-w2"><span class="ring"></span><span>Wait 24 hours</span></div>
+
+          <!-- Converted + glowing target -->
+          <div class="ea-final">
+            <div class="ea-card">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-5 4 3 7-8"/><path d="M16 4h5v5"/></svg></span>
+              <div><div class="t">Converted</div><div class="s">First purchase</div></div>
+            </div>
+            <span class="ea-target"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -100,6 +387,25 @@
       <h2 class="display-md" data-reveal style="margin-bottom:2rem;">Most email lists aren&#x27;t dead. <span class="gold">They&#x27;re underpowered.</span></h2>
       <p class="lead" style="max-width:64ch;" data-reveal>Generic newsletters. One-size-fits-all blasts. No segmentation. No welcome sequence. No win-back path. No behavior-based triggers. No real story after the first click.</p>
       <p class="lead" style="max-width:64ch;" data-reveal>Email gets powerful when it stops being a channel and becomes the memory of the business.</p>
+
+      <div class="stats" data-reveal style="margin-top:3.2rem;">
+        <div class="stat">
+          <div class="num"><span data-count="156">0</span><sup>%</sup></div>
+          <div class="desc">Lift in reply rate</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="2.4">0</span><sup>x</sup></div>
+          <div class="desc">More pipeline created</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="37">0</span><sup>%</sup></div>
+          <div class="desc">More meetings booked</div>
+        </div>
+        <div class="stat">
+          <div class="num"><span data-count="18">0</span><sup>%</sup></div>
+          <div class="desc">Lower unsubscribe rate</div>
+        </div>
+      </div>
     </div>
   </section>
 <div id="build"></div>
@@ -109,35 +415,66 @@
       <h2 class="display-lg" data-split style="margin-bottom:3rem;">Follow-up that feels personal.</h2>
       <div class="grid-3" data-reveal-group>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
           <span class="kicker">Platform Setup &amp;amp; Migration</span>
           <h3>The tool that fits your operation</h3>
           <p>Klaviyo, HubSpot, ActiveCampaign, GoHighLevel, Customer.io, Mailchimp &mdash; or whatever truly fits.</p>
         </article>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v4M12 3 9.5 5.5M12 3l2.5 2.5"/><path d="m5 11 7 4 7-4"/><rect x="3" y="9" width="18" height="11" rx="2"/></svg></span>
           <span class="kicker">Welcome &amp;amp; Onboarding</span>
           <h3>The first impression after the click</h3>
           <p>Clear expectation, proof, next steps, and value after the form fill, signup, or purchase.</p>
         </article>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.5a3.2 3.2 0 0 1 0 6.4M18.5 20c0-2.6-1.4-4.9-3.5-6"/></svg></span>
           <span class="kicker">Lead Nurture</span>
           <h3>Warm before sales speaks</h3>
           <p>Behavior-based education and persuasion that prepares prospects to buy.</p>
         </article>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.5 12.5a1.5 1.5 0 0 0 1.5 1.2h8.5a1.5 1.5 0 0 0 1.5-1.2L21 8H6"/><circle cx="9.5" cy="20.5" r="1.2"/><circle cx="17.5" cy="20.5" r="1.2"/></svg></span>
           <span class="kicker">Abandoned Cart / Browse</span>
           <h3>Recover the hesitation</h3>
           <p>For eCommerce brands, we recover lost interest with timing, value, trust, and offer strategy.</p>
         </article>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v4h-4"/></svg></span>
           <span class="kicker">Lifecycle Email</span>
           <h3>Revenue after the first sale</h3>
           <p>Post-purchase, upsell, cross-sell, replenishment, win-back, loyalty, referral, and reactivation flows.</p>
         </article>
         <article class="current-card">
+          <span class="ea-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v5c0 4.4 3 7.6 7 9 4-1.4 7-4.6 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
           <span class="kicker">Deliverability</span>
           <h3>Land in the inbox</h3>
           <p>SPF, DKIM, DMARC, list hygiene, warming, suppression strategy, and engagement-based segmentation.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-section-theme="light" style="padding-top:0;">
+    <div class="container">
+      <div class="ea-precision" data-reveal>
+        <div>
+          <span class="label" style="color:var(--gold);">Precision Follow-Up</span>
+          <h3 style="margin-top:1rem;">The right message.<br>At the <span class="gold">right moment</span>.<br>Every time.</h3>
+          <div style="margin-top:2rem;">
+            <a class="btn solid" href="../index.html#connect"><svg class="zap" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>Fix My Follow-Up</a>
+          </div>
+        </div>
+        <div class="ea-orbit" aria-hidden="true">
+          <svg viewBox="0 0 360 220">
+            <ellipse class="ring" cx="180" cy="110" rx="150" ry="58" stroke-width="1"/>
+            <ellipse class="ring" cx="180" cy="110" rx="110" ry="40" stroke-width="1"/>
+            <ellipse class="ring" cx="180" cy="110" rx="68" ry="24" stroke-width="1.2"/>
+            <circle class="core" cx="180" cy="110" r="11"/>
+            <circle class="spark" cx="330" cy="110" r="3"/>
+            <circle class="spark" cx="248" cy="76" r="2.5"/>
+            <circle class="spark" cx="112" cy="146" r="2.5"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
